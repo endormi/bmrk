@@ -1,8 +1,7 @@
-name: Ruby
+name: CI
 
 on:
   push:
-    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -20,7 +19,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true
+    - name: bundle
+      run: bundle install
     - name: Run rubocop
       run: bundle exec rubocop
     - name: Run rake
